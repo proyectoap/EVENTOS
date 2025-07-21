@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Prueba Clarity Automática</title>
+
+  <!-- Script de Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/REEMPLAZA_AQUI";
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script");
+  </script>
+
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+    }
+    .alerta {
+      background: #ffefef;
+      border: 1px solid #ff6a6a;
+      padding: 1rem;
+      margin-top: 2rem;
+      color: #b30000;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Simulación de error automático</h1>
+  <p>Esta página simula una respuesta de error del servidor.</p>
+
+  <div class="alerta" id="errorBox">
+    ❌ Error: Dactilar incorrecto
+  </div>
+
+  <script>
+    // Simulamos una respuesta del backend luego de 3 segundos
+    setTimeout(() => {
+      const errorBox = document.getElementById('errorBox');
+      errorBox.style.display = 'block';
+
+      // Enviamos evento personalizado a Clarity
+      if (typeof clarity === 'function') {
+        clarity('set', 'error_dactilar_incorrecto', 'error');
+        console.log('✅ Evento Clarity enviado: error_dactilar_incorrecto');
+      } else {
+        console.warn('⚠️ Clarity aún no está cargado.');
+      }
+    }, 3000);
+  </script>
+
+</body>
+</html>
